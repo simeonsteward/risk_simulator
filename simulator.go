@@ -33,7 +33,7 @@ func main() {
 		fmt.Printf("Territory %d has %d armies\n", i, armies)
 	}
 
-	startSimulation(1000, ourStartingArmies, enemyStartingArmies)
+	startSimulation(10000, ourStartingArmies, enemyStartingArmies)
 }
 
 type battleResult struct {
@@ -57,7 +57,8 @@ func startSimulation(n int, units int, enemyUnitsByTerritory []int) {
 				unitsStart: prev.unitsStart + result.unitsStart,
 				unitsEnd: prev.unitsEnd + result.unitsEnd,
 			}
-			armies = result.unitsEnd
+			// subtract one to account for leaving an army in the territory
+			armies = result.unitsEnd - 1
 		}
 	}
 
